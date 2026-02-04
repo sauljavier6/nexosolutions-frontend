@@ -6,14 +6,19 @@ export default function TopNavbar() {
   return (
     <header className="sticky top-0 z-50 w-full border-b border-slate-200 dark:border-slate-800 bg-white/90 dark:bg-slate-900/90 backdrop-blur-md">
       <div className="mx-auto max-w-[1280px] px-6 lg:px-20 py-4 flex items-center justify-between">
-        
         {/* Logo */}
         <div
           className="flex items-center gap-3 cursor-pointer"
           onClick={() => navigate("/")}
         >
           <svg className="size-10" fill="none" viewBox="0 0 100 100">
-            <circle cx="50" cy="50" r="45" stroke="currentColor" strokeWidth="0.5" />
+            <circle
+              cx="50"
+              cy="50"
+              r="45"
+              stroke="currentColor"
+              strokeWidth="0.5"
+            />
             <path
               d="M50 15 L85 50 L50 85 L15 50 Z"
               stroke="var(--deep-blue)"
@@ -56,10 +61,17 @@ export default function TopNavbar() {
           </button>
 
           <button
-            onClick={() => navigate("/tecnologias")}
+            onClick={() => navigate("/proceso")}
             className="text-sm font-semibold hover:text-accent-cyan transition-colors"
           >
-            Tecnologías
+            Proceso
+          </button>
+
+          <button
+            onClick={() => navigate("/nosotros")}
+            className="text-sm font-semibold hover:text-accent-cyan transition-colors"
+          >
+            Nosotros
           </button>
 
           <button
@@ -67,13 +79,6 @@ export default function TopNavbar() {
             className="text-sm font-semibold hover:text-accent-cyan transition-colors"
           >
             Blog
-          </button>
-
-          <button
-            onClick={() => navigate("/contacto")}
-            className="text-sm font-semibold hover:text-accent-cyan transition-colors"
-          >
-            Contacto
           </button>
 
           <button
