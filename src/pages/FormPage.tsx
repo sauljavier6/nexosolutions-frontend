@@ -1,4 +1,52 @@
+import { motion, AnimatePresence } from "framer-motion";
+import { CheckCircle, Loader2 } from "lucide-react";
+import { useState } from "react";
+import emailjs from "@emailjs/browser";
+
 export default function FormPage() {
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    company: "",
+    message: "",
+  });
+
+  const [loading, setLoading] = useState(false);
+  const [success, setSuccess] = useState(false);
+
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
+  ) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setLoading(true);
+
+    try {
+      await emailjs.send(
+        import.meta.env.VITE_EMAILJS_SERVICE_ID,
+        import.meta.env.VITE_EMAILJS_TEMPLATE_ID,
+        {
+          name: formData.name,
+          email: formData.email,
+          company: formData.company,
+          message: formData.message,
+        },
+        import.meta.env.VITE_EMAILJS_PUBLIC_KEY,
+      );
+
+      setSuccess(true);
+      setFormData({ name: "", email: "", company: "", message: "" });
+    } catch (error) {
+      console.error("EmailJS Error:", error);
+      alert("Error al enviar el mensaje.");
+    } finally {
+      setLoading(false);
+    }
+  };
+
   return (
     <div className="bg-background-light dark:bg-background-dark transition-colors duration-300">
       <div className="relative flex min-h-screen w-full flex-col group/design-root overflow-x-hidden font-display">
@@ -22,107 +70,113 @@ export default function FormPage() {
               </div>
               <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
                 <div className="lg:col-span-7 bg-white dark:bg-slate-900 p-8 md:p-10 rounded-2xl shadow-xl border border-slate-100 dark:border-slate-800">
-                  <h3 className="text-slate-900 dark:text-white text-2xl font-bold leading-tight pb-8">
-                    Envíanos un mensaje
-                  </h3>
-                  <form className="flex flex-col gap-6">
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                      <div className="flex flex-col gap-2">
-                        <label className="text-slate-700 dark:text-slate-300 text-sm font-bold">
-                          Nombre completo
-                        </label>
+                  <AnimatePresence mode="wait">
+                    {!success ? (
+                      <motion.form
+                        key="form"
+                        onSubmit={handleSubmit}
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        exit={{ opacity: 0 }}
+                        className="flex flex-col gap-6"
+                      >
+                        <h3 className="text-slate-900 dark:text-white text-2xl font-bold pb-4">
+                          Envíanos un mensaje
+                        </h3>
+
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                          <input
+                            name="name"
+                            value={formData.name}
+                            onChange={handleChange}
+                            required
+                            placeholder="Ej. Juan Pérez"
+                            className="form-input w-full rounded-xl h-12 px-4"
+                          />
+
+                          <input
+                            name="company"
+                            value={formData.company}
+                            onChange={handleChange}
+                            placeholder="Nombre de tu empresa"
+                            className="form-input w-full rounded-xl h-12 px-4"
+                          />
+                        </div>
+
                         <input
-                          className="form-input w-full rounded-xl text-slate-900 border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 h-12 px-4 text-base focus:border-[var(--primary-cian)] focus:ring-2 focus:ring-[var(--primary-cian)]/20 transition-all placeholder:text-slate-400"
-                          placeholder="Ej. Juan Pérez"
-                        />
-                      </div>
-                      <div className="flex flex-col gap-2">
-                        <label className="text-slate-700 dark:text-slate-300 text-sm font-bold">
-                          Empresa
-                        </label>
-                        <input
-                          className="form-input w-full rounded-xl text-slate-900 border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 h-12 px-4 text-base focus:border-[var(--primary-cian)] focus:ring-2 focus:ring-[var(--primary-cian)]/20 transition-all placeholder:text-slate-400"
-                          placeholder="Nombre de tu empresa"
-                        />
-                      </div>
-                    </div>
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                      <div className="flex flex-col gap-2">
-                        <label className="text-slate-700 dark:text-slate-300 text-sm font-bold">
-                          Correo electrónico
-                        </label>
-                        <input
-                          className="form-input w-full rounded-xl text-slate-900 border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 h-12 px-4 text-base focus:border-[var(--primary-cian)] focus:ring-2 focus:ring-[var(--primary-cian)]/20 transition-all placeholder:text-slate-400"
-                          placeholder="juan@empresa.com"
+                          name="email"
                           type="email"
+                          required
+                          value={formData.email}
+                          onChange={handleChange}
+                          placeholder="juan@empresa.com"
+                          className="form-input w-full rounded-xl h-12 px-4"
                         />
-                      </div>
-                      <div className="flex flex-col gap-2">
-                        <label className="text-slate-700 dark:text-slate-300 text-sm font-bold">
-                          Teléfono
-                        </label>
-                        <input
-                          className="form-input w-full rounded-xl text-slate-900 border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 h-12 px-4 text-base focus:border-[var(--primary-cian)] focus:ring-2 focus:ring-[var(--primary-cian)]/20 transition-all placeholder:text-slate-400"
-                          placeholder="+52 ..."
-                          type="tel"
+
+                        <textarea
+                          name="message"
+                          required
+                          value={formData.message}
+                          onChange={handleChange}
+                          rows={5}
+                          placeholder="Cuéntanos tu proyecto"
+                          className="form-textarea w-full rounded-xl px-4 py-3"
                         />
-                      </div>
-                    </div>
-                    <div className="flex flex-col gap-2">
-                      <label className="text-slate-700 dark:text-slate-300 text-sm font-bold">
-                        Interés Principal
-                      </label>
-                      <select className="form-select w-full rounded-xl text-slate-900 border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 h-12 px-4 text-base focus:border-[var(--primary-cian)] focus:ring-2 focus:ring-[var(--primary-cian)]/20 transition-all">
-                        <option value="">Selecciona una opción</option>
-                        <option value="custom-software">
-                          Desarrollo de Software a Medida
-                        </option>
-                        <option value="app-mobile">
-                          Aplicación Móvil (iOS/Android)
-                        </option>
-                        <option value="web-dev">
-                          Plataforma Web / E-commerce
-                        </option>
-                        <option value="cloud">
-                          Soluciones en la Nube / DevOps
-                        </option>
-                        <option value="other">Otro</option>
-                      </select>
-                    </div>
-                    <div className="flex flex-col gap-2">
-                      <label className="text-slate-700 dark:text-slate-300 text-sm font-bold">
-                        Mensaje
-                      </label>
-                      <textarea
-                        className="form-textarea w-full rounded-xl text-slate-900 border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 min-h-[140px] px-4 py-3 text-base focus:border-[var(--primary-cian)] focus:ring-2 focus:ring-[var(--primary-cian)]/20 transition-all placeholder:text-slate-400"
-                        placeholder="Cuéntanos brevemente sobre los retos de tu proyecto..."
-                      ></textarea>
-                    </div>
-                    <button
-                      className="flex w-full cursor-pointer items-center justify-center overflow-hidden rounded-xl h-14 bg-[var(--accent-coral)] text-white text-base font-bold leading-normal tracking-wide hover:brightness-110 transition-all shadow-lg hover:shadow-[var(--accent-coral)]/20 mt-4"
-                      type="submit"
-                    >
-                      Enviar solicitud de consulta
-                    </button>
-                  </form>
+
+                        <button
+                          type="submit"
+                          disabled={loading}
+                          className="flex w-full items-center justify-center rounded-xl h-14 bg-red-600 hover:bg-red-700 text-white font-bold transition-all"
+                        >
+                          {loading && (
+                            <Loader2 className="animate-spin mr-2" size={16} />
+                          )}
+                          {loading ? "Enviando..." : "Enviar solicitud"}
+                        </button>
+                      </motion.form>
+                    ) : (
+                      <motion.div
+                        key="success"
+                        initial={{ opacity: 0, scale: 0.9 }}
+                        animate={{ opacity: 1, scale: 1 }}
+                        className="text-center py-20"
+                      >
+                        <CheckCircle
+                          size={60}
+                          className="mx-auto mb-6 text-green-500"
+                        />
+                        <h3 className="text-2xl font-bold mb-2">
+                          ¡Mensaje enviado!
+                        </h3>
+                        <p className="text-slate-500">
+                          Te contactaremos en menos de 24 horas.
+                        </p>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
                 </div>
+
                 <div className="lg:col-span-5 flex flex-col gap-8">
-                  <div className="bg-[var(--primary-dark)] p-8 rounded-2xl border border-[var(--primary-dark)] shadow-xl relative overflow-hidden">
-                    <div className="absolute -right-10 -top-10 size-40 bg-white/5 rounded-full"></div>
+                  <div className="bg-slate-900 p-8 rounded-2xl border border-slate-800 shadow-xl relative overflow-hidden">
+                    <div className="absolute -right-10 -top-10 size-40 bg-white/10 rounded-full"></div>
+
                     <h4 className="text-xl font-bold text-white mb-3 relative z-10">
                       ¿Quieres una respuesta rápida?
                     </h4>
+
                     <p className="text-slate-300 mb-8 relative z-10 leading-relaxed">
                       Agenda una llamada de descubrimiento de 30 minutos
                       directamente con uno de nuestros consultores expertos.
                     </p>
-                    <button className="flex w-full items-center justify-center gap-3 bg-[var(--accent-coral)] text-white rounded-xl h-14 px-6 font-bold hover:brightness-110 transition-all shadow-lg relative z-10">
+
+                    <button className="flex w-full items-center justify-center gap-3 bg-red-600 hover:bg-red-700 text-white rounded-xl h-14 px-6 font-bold transition-all shadow-lg relative z-10">
                       <span className="material-symbols-outlined">
                         calendar_today
                       </span>
                       Agendar llamada en Calendly
                     </button>
                   </div>
+
                   <div className="flex flex-col gap-8 px-2">
                     <h4 className="text-xl font-bold text-slate-900 dark:text-white flex items-center gap-2">
                       <span className="w-8 h-1 bg-[var(--primary-cian)] rounded-full"></span>
@@ -201,7 +255,6 @@ export default function FormPage() {
               </div>
             </div>
           </main>
-
         </div>
       </div>
     </div>

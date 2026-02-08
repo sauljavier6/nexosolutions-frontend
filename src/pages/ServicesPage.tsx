@@ -1,8 +1,11 @@
+import { useNavigate } from "react-router-dom";
+
 export default function ServicesPage() {
+  const navigate = useNavigate();
+
   return (
     <div className="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 antialiased">
       <div className="relative flex min-h-screen w-full flex-col">
-
         <main className="flex flex-1 flex-col items-center">
           <div className="w-full max-w-[1100px] px-6 py-16 flex flex-col gap-14">
             <div className="flex flex-col gap-4 border-l-4 border-primary-cyan pl-6">
@@ -38,8 +41,8 @@ export default function ServicesPage() {
                       control en tiempo real.
                     </p>
                   </div>
-                  <button className="flex min-w-[160px] cursor-pointer items-center justify-center rounded-lg h-12 px-6 bg-coral-red text-white text-sm font-black uppercase tracking-wider w-fit hover:scale-105 transition-all shadow-md active:scale-95">
-                    <span>Solicitar información</span>
+                  <button className="flex min-w-[160px] items-center justify-center rounded-lg h-12 px-6 bg-red-600 hover:bg-red-700 text-white text-sm font-black uppercase tracking-wider w-fit transition-all shadow-md active:scale-95">
+                    Solicitar información
                   </button>
                 </div>
                 <div
@@ -71,20 +74,24 @@ export default function ServicesPage() {
                       robusta que crece junto a su empresa.
                     </p>
                   </div>
-                  <button className="flex min-w-[160px] cursor-pointer items-center justify-center rounded-lg h-12 px-6 bg-coral-red text-white text-sm font-black uppercase tracking-wider w-fit hover:scale-105 transition-all shadow-md active:scale-95">
+                  <button className="flex min-w-[160px] items-center justify-center rounded-lg h-12 px-6 bg-red-600 hover:bg-red-700 text-white text-sm font-black uppercase tracking-wider w-fit transition-all shadow-md active:scale-95">
                     <span>Solicitar información</span>
                   </button>
                 </div>
                 <div
                   className="w-full md:w-2/5 bg-center bg-no-repeat aspect-video bg-cover rounded-xl shadow-inner border-4 border-slate-50 dark:border-slate-700"
                   style={{
-                    backgroundImage: 'url("https://lh3.googleusercontent.com/aida-public/AB6AXuCvZ0dGkBGTLLy37jJTkFDPQqb93DAHGU9TybrcU1SeqYSHTLgDhsXCtAG17buh13za4t1G56kdaqc69SxGrT0w3TUfuVs0GHGw-HGGDKFqHGtdikHdx30z0QRYr1R7VXKfDSOyTbYrD21rJuSuZHOtt4bbECX7hlnT7MGk-Q499jl4HnCXIrwhyBP03LHOtQ9WsOjqYo50iYLytDD9Q3u4SIJGqeKlooRtviF2fnP2U4XOzKdlujkeYku05iP6dL_8xXMciphHCmU")',
-                  }}    
+                    backgroundImage:
+                      'url("https://lh3.googleusercontent.com/aida-public/AB6AXuCvZ0dGkBGTLLy37jJTkFDPQqb93DAHGU9TybrcU1SeqYSHTLgDhsXCtAG17buh13za4t1G56kdaqc69SxGrT0w3TUfuVs0GHGw-HGGDKFqHGtdikHdx30z0QRYr1R7VXKfDSOyTbYrD21rJuSuZHOtt4bbECX7hlnT7MGk-Q499jl4HnCXIrwhyBP03LHOtQ9WsOjqYo50iYLytDD9Q3u4SIJGqeKlooRtviF2fnP2U4XOzKdlujkeYku05iP6dL_8xXMciphHCmU")',
+                  }}
                 ></div>
               </div>
-              <div className="flex flex-col md:flex-row items-stretch justify-between gap-8 rounded-2xl service-card-gradient p-10 shadow-2xl shadow-deep-blue/20 text-white relative overflow-hidden group">
-                <div className="absolute top-0 right-0 w-64 h-64 bg-white/5 rounded-full -mr-32 -mt-32 blur-3xl"></div>
-                <div className="flex flex-[3_3_0px] flex-col justify-between gap-8 relative z-10">
+              <div className="flex flex-col md:flex-row items-stretch justify-between gap-8 rounded-2xl bg-gradient-to-br from-[#0b1c2d] to-[#123456] p-10 shadow-2xl text-white relative overflow-hidden group">
+                {/* Efecto luz */}
+                <div className="absolute top-0 right-0 w-64 h-64 bg-white/10 rounded-full -mr-32 -mt-32 blur-3xl"></div>
+
+                {/* Contenido */}
+                <div className="flex flex-col justify-between gap-8 relative z-10 md:w-3/5">
                   <div className="flex flex-col gap-4">
                     <div className="flex items-center gap-2 text-white/90">
                       <span className="material-symbols-outlined font-bold">
@@ -94,27 +101,34 @@ export default function ServicesPage() {
                         SERVICIO DESTACADO
                       </span>
                     </div>
-                    <h3 className="text-3xl font-black leading-tight font-display tracking-tight">
+
+                    <h3 className="text-3xl font-black leading-tight tracking-tight">
                       Integración Oracle NetSuite
                     </h3>
-                    <p className="text-white/80 text-lg font-medium leading-relaxed max-w-xl">
+
+                    <p className="text-white/80 text-lg leading-relaxed max-w-xl">
                       Sincronización experta con la nube líder. Conectamos sus
                       sistemas actuales y plataformas de e-commerce con Oracle
                       NetSuite para una visibilidad total y automática en tiempo
                       real.
                     </p>
                   </div>
-                  <button className="flex min-w-[180px] cursor-pointer items-center justify-center rounded-lg h-14 px-8 bg-coral-red text-white text-sm font-black uppercase tracking-widest w-fit hover:brightness-110 hover:scale-105 transition-all shadow-[0_10px_20px_-5px_rgba(230,85,85,0.4)]">
-                    <span>Consultar con un Experto</span>
+
+                  <button className="flex min-w-[200px] items-center justify-center rounded-lg h-14 px-8 bg-red-600 hover:bg-red-700 text-white text-sm font-black uppercase tracking-widest w-fit transition-all shadow-lg hover:scale-105">
+                    Consultar con un Experto
                   </button>
                 </div>
+
+                {/* Imagen */}
                 <div
-                  className="w-full md:w-2/5 bg-center bg-no-repeat aspect-video bg-cover rounded-xl shadow-2xl border-4 border-white/10 group-hover:scale-[1.02] transition-transform duration-500 relative z-10"
+                  className="w-full md:w-2/5 aspect-video bg-cover bg-center rounded-xl shadow-2xl border-4 border-white/20 relative z-10"
                   style={{
-                    backgroundImage: 'url("https://lh3.googleusercontent.com/aida-public/AB6AXuA7xwaaHHz2v12ICf3t33HHSu-NzJ4hfrhUZfNxmWp1CHiH-4_ex93eQeRs3zsv2NwuyoRmmzQ4RjYmH-rzR7uL62i_t7uBfwXAtxEgIO5ynBUwNTT9d4rWHxL4qhF9wZhBJljHuuuIc5jBmDVHkYbtlJam6arkFqKKsaaVx2G4bq9lZqL-l97L6_OCAl6Nf8NW95Pxc8MMvJQwUGKIYVDzR5LB9P3d4aq6rm1iJRYbA-2d4vq6xygID4MZ-TtYS6SWvtWpq1TjNQs")',
-                  }}    
+                    backgroundImage:
+                      'url("https://lh3.googleusercontent.com/aida-public/AB6AXuA7xwaaHHz2v12ICf3t33HHSu-NzJ4hfrhUZfNxmWp1CHiH-4_ex93eQeRs3zsv2NwuyoRmmzQ4RjYmH-rzR7uL62i_t7uBfwXAtxEgIO5ynBUwNTT9d4rWHxL4qhF9wZhBJljHuuuIc5jBmDVHkYbtlJam6arkFqKKsaaVx2G4bq9lZqL-l97L6_OCAl6Nf8NW95Pxc8MMvJQwUGKIYVDzR5LB9P3d4aq6rm1iJRYbA-2d4vq6xygID4MZ-TtYS6SWvtWpq1TjNQs")',
+                  }}
                 ></div>
               </div>
+
               <div className="flex flex-col md:flex-row items-stretch justify-between gap-8 rounded-2xl bg-white dark:bg-slate-800/50 p-8 shadow-xl shadow-slate-200/50 dark:shadow-none border border-slate-100 dark:border-slate-800">
                 <div className="flex flex-[3_3_0px] flex-col justify-between gap-6">
                   <div className="flex flex-col gap-4">
@@ -136,13 +150,16 @@ export default function ServicesPage() {
                       reduciendo errores.
                     </p>
                   </div>
-                  <button className="flex min-w-[160px] cursor-pointer items-center justify-center rounded-lg h-12 px-6 bg-coral-red text-white text-sm font-black uppercase tracking-wider w-fit hover:scale-105 transition-all shadow-md active:scale-95">
+                  <button className="flex min-w-[160px] items-center justify-center rounded-lg h-12 px-6 bg-red-600 hover:bg-red-700 text-white text-sm font-black uppercase tracking-wider w-fit transition-all shadow-md active:scale-95">
                     <span>Solicitar información</span>
                   </button>
                 </div>
                 <div
                   className="w-full md:w-2/5 bg-center bg-no-repeat aspect-video bg-cover rounded-xl shadow-inner border-4 border-slate-50 dark:border-slate-700"
-                  style={{backgroundImage: 'url("https://lh3.googleusercontent.com/aida-public/AB6AXuB5oX1oX1Yk1Yk2b1e0YJ1j1F3qfKX9Z3F4G5H6I7J8K9L0M1N2O3P4Q5R6S7T8U9V0W1X2Y3Z4A5B6C7D8E9F0G1H2I3J4K5L6M7N8O9P0Q1R2S3T4U5V6W7X8Y9Z0")',}}
+                  style={{
+                    backgroundImage:
+                      'url("https://images.unsplash.com/photo-1556740749-887f6717d7e4?auto=format&fit=crop&w=1200&q=80")',
+                  }}
                 ></div>
               </div>
               <div className="flex flex-col md:flex-row items-stretch justify-between gap-8 rounded-2xl bg-white dark:bg-slate-800/50 p-8 shadow-xl shadow-slate-200/50 dark:shadow-none border border-slate-100 dark:border-slate-800">
@@ -166,34 +183,40 @@ export default function ServicesPage() {
                       excepcional.
                     </p>
                   </div>
-                  <button className="flex min-w-[160px] cursor-pointer items-center justify-center rounded-lg h-12 px-6 bg-coral-red text-white text-sm font-black uppercase tracking-wider w-fit hover:scale-105 transition-all shadow-md active:scale-95">
+                  <button className="flex min-w-[160px] items-center justify-center rounded-lg h-12 px-6 bg-red-600 hover:bg-red-700 text-white text-sm font-black uppercase tracking-wider w-fit transition-all shadow-md active:scale-95">
                     <span>Solicitar información</span>
                   </button>
                 </div>
                 <div
                   className="w-full md:w-2/5 bg-center bg-no-repeat aspect-video bg-cover rounded-xl shadow-inner border-4 border-slate-50 dark:border-slate-700"
-                  style={{backgroundImage: 'url("https://lh3.googleusercontent.com/aida-public/AB6AXuD9IKmuWxU9ut-77Fih_i9Tayyw6ofXFTHh2YJetNWR4t7pLszIbYPxktb2Axgn8Xa4r5K9W467SZE5wwL9ojYGG8CcmTZ3CDyJ9hHzEXs45rg6agor7hyUOINXmV3wq-LWGOm11j60z9p2a3c0rr5mySVsj3d7pm754NKY792M2OgYH71-JKy1jbeq5yH_28SA2I8iP0oMn3LbD5o_Dzb1pY6-nR2w_BVijYqaV3y6x8F4UfS8hR1weOOn-8FPiHrH2eQ7SK18pXg")',}}
+                  style={{
+                    backgroundImage:
+                      'url("https://lh3.googleusercontent.com/aida-public/AB6AXuD9IKmuWxU9ut-77Fih_i9Tayyw6ofXFTHh2YJetNWR4t7pLszIbYPxktb2Axgn8Xa4r5K9W467SZE5wwL9ojYGG8CcmTZ3CDyJ9hHzEXs45rg6agor7hyUOINXmV3wq-LWGOm11j60z9p2a3c0rr5mySVsj3d7pm754NKY792M2OgYH71-JKy1jbeq5yH_28SA2I8iP0oMn3LbD5o_Dzb1pY6-nR2w_BVijYqaV3y6x8F4UfS8hR1weOOn-8FPiHrH2eQ7SK18pXg")',
+                  }}
                 ></div>
               </div>
             </div>
-            <div className="mt-8 flex flex-col items-center gap-8 p-12 rounded-[2rem] bg-deep-blue text-white text-center relative overflow-hidden shadow-2xl">
+            <div className="mt-8 flex flex-col items-center gap-8 p-12 rounded-[2rem] bg-gradient-to-br from-[#0b1c2d] to-[#102a43] text-white text-center relative overflow-hidden shadow-2xl">
+              {/* textura */}
               <div className="absolute top-0 left-0 w-full h-full opacity-10 pointer-events-none bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')]"></div>
-              <h4 className="text-4xl font-extrabold font-display relative z-10">
+
+              <h4 className="text-3xl md:text-4xl font-extrabold relative z-10">
                 ¿Listo para transformar su negocio?
               </h4>
-              <p className="text-slate-300 text-lg max-w-xl relative z-10">
+
+              <p className="text-white/80 text-lg max-w-xl relative z-10">
                 Nuestros consultores están listos para analizar sus necesidades
                 y proponer la mejor estrategia tecnológica personalizada.
               </p>
+
               <div className="flex gap-4 relative z-10">
-                <button className="bg-coral-red hover:bg-coral-red/90 text-white font-black uppercase tracking-widest py-4 px-10 rounded-xl transition-all shadow-lg hover:scale-105">
+                <button onClick={() => navigate("/contacto")} className="bg-red-600 hover:bg-red-700 text-white font-black uppercase tracking-widest py-4 px-10 rounded-xl transition-all shadow-lg hover:scale-105">
                   Agendar Consultoría Gratuita
                 </button>
               </div>
             </div>
           </div>
         </main>
-
       </div>
     </div>
   );

@@ -213,18 +213,19 @@ export default function BlogPage() {
                       </span>
                     </button>
                   </div> */}
-                  
                 </div>
 
                 <aside className="w-full lg:w-80 flex flex-col gap-8">
                   <div className="bg-deep-blue p-8 rounded-xl text-white">
-                    <h3 className="text-xl font-bold mb-4">
+                    <h3 className="text-xl font-bold mb-4 text-slate-900">
                       Suscríbete al Newsletter
                     </h3>
-                    <p className="text-gray-300 text-sm mb-6 leading-relaxed">
+
+                    <p className="text-slate-600 text-sm mb-6 leading-relaxed">
                       Recibe las últimas tendencias en tecnología y software
                       directamente en tu bandeja de entrada cada semana.
                     </p>
+
                     <form className="flex flex-col gap-4">
                       <input
                         className="w-full rounded-lg bg-white/10 border-white/20 text-white placeholder:text-gray-400 focus:border-cyan-accent focus:ring-cyan-accent"

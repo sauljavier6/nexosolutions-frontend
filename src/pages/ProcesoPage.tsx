@@ -1,4 +1,8 @@
+import { useNavigate } from "react-router-dom";
+
 export default function ProcesoPage() {
+  const navigate = useNavigate();
+
   return (
     <body className="bg-background-light dark:bg-background-dark text-slate-900 dark:text-white transition-colors duration-200">
       <div className="relative flex h-auto min-h-screen w-full flex-col group/design-root overflow-x-hidden">
@@ -29,7 +33,9 @@ export default function ProcesoPage() {
                     <div className="absolute -inset-1 bg-gradient-to-r from-cyan-custom to-deep-blue rounded-2xl blur opacity-20 group-hover:opacity-30 transition duration-1000"></div>
                     <div
                       className="relative bg-cover bg-center rounded-2xl min-h-[350px] shadow-2xl overflow-hidden"
-                      style={{ backgroundImage: `linear-gradient(45deg, rgba(10, 36, 99, 0.8) 0%, rgba(0, 229, 255, 0.2) 100%), url("https://lh3.googleusercontent.com/aida-public/AB6AXuA0g4nUnvJzbFuZM6YB_mZB2uWcWjIaQqB58_spUBYqz8FgZ0R-83Kadg6I91kwHYU2fYbf_lMYBV0JOyvEE63q5vpqCNavzHCZbfQJS-30EIMl12ApX4JADnvaqszkCf_t2Cd12ZPMKuFTi_gvrIPvaSgtXEfxl-dBwUkwLRcjVCnUsNt9b8RqNRFJ24Jo1lKHvQm8_GDeFNiVGL5_DLnt_jMQzxkoczmybOktt8jgBqEm-kN0vLfRzOnzxvnoBgA_UPx6ypkYRSE")`}}
+                      style={{
+                        backgroundImage: `linear-gradient(45deg, rgba(10, 36, 99, 0.8) 0%, rgba(0, 229, 255, 0.2) 100%), url("https://lh3.googleusercontent.com/aida-public/AB6AXuA0g4nUnvJzbFuZM6YB_mZB2uWcWjIaQqB58_spUBYqz8FgZ0R-83Kadg6I91kwHYU2fYbf_lMYBV0JOyvEE63q5vpqCNavzHCZbfQJS-30EIMl12ApX4JADnvaqszkCf_t2Cd12ZPMKuFTi_gvrIPvaSgtXEfxl-dBwUkwLRcjVCnUsNt9b8RqNRFJ24Jo1lKHvQm8_GDeFNiVGL5_DLnt_jMQzxkoczmybOktt8jgBqEm-kN0vLfRzOnzxvnoBgA_UPx6ypkYRSE")`,
+                      }}
                     >
                       <div className="absolute bottom-0 left-0 p-8">
                         <div className="flex items-center gap-4">
@@ -146,7 +152,9 @@ export default function ProcesoPage() {
                     </div>
                     <div className="relative z-10 order-2">
                       <div className="size-16 rounded-full bg-deep-blue border-4 border-deep-blue flex items-center justify-center shadow-2xl shadow-deep-blue/40 ring-8 ring-deep-blue/10">
-                        <span className="text-2xl font-black text-white">04</span>
+                        <span className="text-2xl font-black text-coral-red">
+                          04
+                        </span>
                       </div>
                     </div>
                     <div className="flex-1 text-center md:text-left order-3">
@@ -162,22 +170,26 @@ export default function ProcesoPage() {
                 </div>
               </div>
               <div className="mt-24">
-                <div className="relative overflow-hidden rounded-[2rem] bg-deep-blue p-8 md:p-16 text-center">
-                  <div className="absolute -top-24 -left-24 size-64 rounded-full bg-cyan-custom/10 blur-3xl"></div>
-                  <div className="absolute -bottom-24 -right-24 size-64 rounded-full bg-coral-red/10 blur-3xl"></div>
+                <div className="relative overflow-hidden rounded-[2rem] bg-slate-900 p-8 md:p-16 text-center">
+                  <div className="absolute -top-24 -left-24 w-64 h-64 rounded-full bg-cyan-400/20 blur-3xl"></div>
+                  <div className="absolute -bottom-24 -right-24 w-64 h-64 rounded-full bg-red-500/20 blur-3xl"></div>
+
                   <div className="relative z-10 max-w-2xl mx-auto space-y-8">
                     <h2 className="text-3xl md:text-5xl font-black text-white leading-tight">
                       Impulse su empresa al siguiente nivel
                     </h2>
-                    <p className="text-cyan-custom/80 text-lg md:text-xl font-medium">
+
+                    <p className="text-slate-300 text-lg md:text-xl font-medium">
                       Agende una consultoría técnica gratuita y descubra cómo
                       nuestra metodología puede transformar su PYME.
                     </p>
+
                     <div className="flex flex-wrap justify-center gap-6">
-                      <button className="px-8 py-4 bg-coral-red hover:bg-coral-red/90 text-white rounded-full font-extrabold text-lg transition-all transform hover:scale-105 shadow-xl shadow-coral-red/30">
+                      <button onClick={() => navigate("/contacto")} className="px-8 py-4 bg-red-600 hover:bg-red-700 text-white rounded-full font-extrabold text-lg transition-all transform hover:scale-105 shadow-xl">
                         Iniciar Consultoría
                       </button>
-                      <button className="px-8 py-4 border-2 border-white/20 hover:bg-white/10 text-white rounded-full font-extrabold text-lg transition-all">
+
+                      <button className="px-8 py-4 border-2 border-white/30 hover:bg-white/10 text-white rounded-full font-extrabold text-lg transition-all">
                         Ver Portafolio
                       </button>
                     </div>

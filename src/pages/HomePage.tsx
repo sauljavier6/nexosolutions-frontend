@@ -1,4 +1,8 @@
+import { useNavigate } from "react-router-dom";
+
 export default function HomePage() {
+  const navigate = useNavigate();
+
   return (
     <div className="font-display bg-background-light dark:bg-background-dark text-[#1e293b] dark:text-slate-200 transition-colors duration-300">
       <div className="relative flex min-h-screen flex-col overflow-x-hidden">
@@ -18,7 +22,7 @@ export default function HomePage() {
                   e integración total.
                 </p>
                 <div className="flex flex-wrap gap-4">
-                  <button className="bg-cta-coral hover:bg-[#d94343] text-white px-8 py-4 rounded-xl text-base font-bold shadow-xl shadow-cta-coral/20 transition-all">
+                  <button onClick={() => navigate("/contacto")} className="bg-cta-coral hover:bg-[#d94343] text-white px-8 py-4 rounded-xl text-base font-bold shadow-xl shadow-cta-coral/20 transition-all">
                     Hablemos de tu proyecto
                   </button>
                   <button className="border-2 border-slate-200 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-slate-800 text-primary dark:text-white px-8 py-4 rounded-xl text-base font-bold transition-all">
@@ -264,7 +268,7 @@ export default function HomePage() {
                 tu rentabilidad.
               </p>
               <div className="flex flex-col sm:flex-row gap-6 relative z-10 w-full sm:w-auto">
-                <button className="bg-cta-coral hover:bg-[#d94343] text-white px-12 py-5 rounded-2xl font-black text-lg shadow-2xl shadow-cta-coral/40 transition-all hover:scale-105">
+                <button onClick={() => navigate("/contacto")} className="bg-cta-coral hover:bg-[#d94343] text-white px-12 py-5 rounded-2xl font-black text-lg shadow-2xl shadow-cta-coral/40 transition-all hover:scale-105">
                   Agendar consultoría
                 </button>
                 <button className="bg-white/5 hover:bg-white/10 border-2 border-white/20 backdrop-blur-md px-12 py-5 rounded-2xl font-black text-lg transition-all">

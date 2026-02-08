@@ -7,13 +7,15 @@ import CustomerLayout from "../layouts/MainLayout";
 import AboutPage from "../pages/AboutPage";
 import BlogPage from "../pages/BlogPage";
 import ProcesoPage from "../pages/ProcesoPage";
+import SolutionsPage from "../pages/SolutionsPage";
 
 const AppRoutes = () => {
   return (
     <Routes>
       <Route path="/" element={<CustomerLayout />} >
         <Route index element={<HomePage />} />
-        <Route path="servicios" element={<ServicesPage />} />
+        <Route path="servicios" element={<ServicesPage />} />   
+        <Route path="soluciones" element={<SolutionsPage />} />
         <Route path="contacto" element={<FormPage />} />
         <Route path="nosotros" element={<AboutPage />} />  
         <Route path="blog" element={<BlogPage />} />  
